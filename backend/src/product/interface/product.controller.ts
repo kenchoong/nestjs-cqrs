@@ -1,4 +1,4 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import { Controller, Get, Param, Post } from '@nestjs/common';
 import { QueryBus } from '@nestjs/cqrs';
 import { GetAllProductsQuery } from '../application/queries/impl/get-all-products.query';
 import { GetProductByIdQuery } from '../application/queries/impl/get-product-by-id.query';

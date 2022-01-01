@@ -18,11 +18,6 @@ export type ProductProperties = ProductEssestialProperties &
 
 export interface Product {
   properties: () => ProductProperties;
-  create: () => void;
-  update: () => void;
-  delete: () => void;
-  getAll: () => void;
-  getById: () => void;
 }
 
 /*
