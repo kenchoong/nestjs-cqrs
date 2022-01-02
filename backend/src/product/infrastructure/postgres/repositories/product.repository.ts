@@ -42,12 +42,12 @@ export class ProductRepoImplement implements ProductRepository {
    */
   private modelToEntity(model: Product): ProductEntity {
     const properties = model.properties();
+    console.log(properties);
 
     return {
       ...properties,
       createdAt: properties.createdAt,
       updatedAt: properties.updatedAt,
-      deletedAt: properties.deletedAt,
     };
   }
 
