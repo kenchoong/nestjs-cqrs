@@ -1,20 +1,32 @@
-import { Controller, Get, Param, Post } from '@nestjs/common';
-import { QueryBus } from '@nestjs/cqrs';
-import { GetAllProductsQuery } from '../application/queries/impl/get-all-products.query';
-import { GetProductByIdQuery } from '../application/queries/impl/get-product-by-id.query';
+import { Controller, Get, Param, Post, Body, Query } from '@nestjs/common';
+import { CommandBus, QueryBus } from '@nestjs/cqrs';
+import { CreateProductCommand } from '../application/create-product/create-product.command';
+import { GetAllProductsQuery } from '../application/get-all-products/get-all-products.query';
+import { GetProductByIdQuery } from '../application/get-product-by-id/get-product-by-id.query';
 
-/*
 import { CreateProductDto } from './dto/create-product.dto';
-import { UpdateProductDto } from './dto/update-product.dto';
-*/
+import { GetAllProductDto } from './dto/get-all-product.dto';
 
 @Controller('product')
 export class ProductController {
-  constructor(private readonly queryBus: QueryBus) {}
+  constructor(
+    private readonly queryBus: QueryBus,
+    private readonly commandBus: CommandBus,
+  ) {}
+
+  @Post()
+  async create(@Body() body: CreateProductDto) {
+    const { name, price, description } = body;
+    return await this.commandBus.execute(
+      new CreateProductCommand(name, price, description),
+    );
+  }
 
   @Get()
-  async findAll() {
-    return await this.queryBus.execute(new GetAllProductsQuery());
+  async findAll(@Query() queryDto: GetAllProductDto) {
+    return await this.queryBus.execute(
+      new GetAllProductsQuery(queryDto.offset, queryDto.limit),
+    );
   }
 
   @Get(':id')
