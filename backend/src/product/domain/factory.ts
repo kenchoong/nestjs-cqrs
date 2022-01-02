@@ -12,12 +12,30 @@ export class ProductFactory {
     @Inject(EventPublisher) private readonly eventPublisher: EventPublisher,
   ) {}
 
-  create(id: string, price: string, name: string): Product {
+  /**
+   * @description Create Product AggreateRoot
+   * @param id
+   * @param price
+   * @param name
+   * @param description
+   * @returns Product domain object
+   */
+  create(
+    id: string,
+    price: string,
+    name: string,
+    description: string,
+  ): Product {
     return this.eventPublisher.mergeObjectContext(
-      new ProductImpl({ id, price, name }),
+      new ProductImpl({ id, price, name, description }),
     );
   }
 
+  /**
+   *@description restructure data to Product AggreateRoot
+   * @param ProductProperties
+   * @returns
+   */
   restructure(properties: ProductProperties): Product {
     return this.eventPublisher.mergeObjectContext(new ProductImpl(properties));
   }

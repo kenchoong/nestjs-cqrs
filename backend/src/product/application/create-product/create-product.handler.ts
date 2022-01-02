@@ -21,7 +21,11 @@ export class CreateProductHandler
       await this.productRepo.newProductId(),
       command.price,
       command.name,
+      command.description,
     );
+
+    product.validateName(command.name);
+    product.validatePrice(command.price);
 
     await this.productRepo.create(product);
 
