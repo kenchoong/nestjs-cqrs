@@ -1,11 +1,28 @@
 import { UnprocessableEntityException } from '@nestjs/common';
 import { AggregateRoot } from '@nestjs/cqrs';
 
-export type UserProperties = Required<{
+/**
+ * @description we only have this when create
+ */
+export type UserEssentialProperties = Required<{
   readonly id: string;
   readonly username: string;
+
   //readonly email: string;
 }>;
+
+/**
+ * @description: reason to do this is because when create that time we dont have this data
+ */
+export type UserOptionalProperties = Partial<{
+  readonly createdAt: Date | null;
+  readonly updatedAt: Date | null;
+  readonly deletedAt: Date | null;
+  readonly version: number;
+}>;
+
+export type UserProperties = UserEssentialProperties &
+  Required<UserOptionalProperties>;
 
 export interface User {
   /**
@@ -29,8 +46,14 @@ export interface User {
 export class UserImplement extends AggregateRoot implements User {
   readonly id: string;
   readonly username: string;
+  readonly updatedAt: Date | null;
+  readonly createdAt: Date | null;
+  readonly deletedAt: Date | null;
+  readonly version: number;
 
-  constructor(userProperties: UserProperties) {
+  constructor(
+    userProperties: UserEssentialProperties & UserOptionalProperties,
+  ) {
     super();
     Object.assign(this, userProperties);
   }
@@ -39,6 +62,10 @@ export class UserImplement extends AggregateRoot implements User {
     return {
       id: this.id,
       username: this.username,
+      createdAt: this.createdAt,
+      updatedAt: this.updatedAt,
+      deletedAt: this.deletedAt,
+      version: this.version,
     };
   }
   validateUsername(username: string) {

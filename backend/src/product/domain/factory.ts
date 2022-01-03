@@ -34,7 +34,7 @@ export class ProductFactory {
   /**
    *@description restructure data to Product AggreateRoot
    * @param ProductProperties
-   * @returns
+   * @returns Product Aggregate Root object
    */
   restructure(properties: ProductProperties): Product {
     return this.eventPublisher.mergeObjectContext(new ProductImpl(properties));

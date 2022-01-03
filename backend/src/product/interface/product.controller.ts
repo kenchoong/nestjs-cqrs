@@ -16,7 +16,7 @@ import { CreateProductDto } from './dto/request/create-product.dto';
 import { GetAllProductDto } from './dto/request/get-all-product.dto';
 import { GetAllProductResponseDTO } from './dto/response/get-all-products-response.dto';
 import { GetProductByIdResponseDto } from './dto/response/get-product-by-id-response.dto';
-import { ResponseDescription } from './response-description';
+import { ResponseDescription } from '../../common/api/response-description';
 
 /**
  * @description API response is arrage using Nestjs Swagger

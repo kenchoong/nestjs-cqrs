@@ -5,9 +5,5 @@ export class CreateProductCommand implements ICommand {
 }
 
 export class CreateUserCommand implements ICommand {
-  constructor(
-    readonly name: string,
-    readonly price: string,
-    readonly description: string,
-  ) {}
+  constructor(readonly username: string) {}
 }

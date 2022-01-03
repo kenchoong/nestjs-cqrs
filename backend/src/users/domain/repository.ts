@@ -1,6 +1,6 @@
 import { User } from './user';
 
-export class UserRepo {
-  create: () => void;
-  findByUsername: (username: string) => Promise<User>;
+export class UserRepository {
+  newUserId: () => Promise<string>;
+  create: (data: User) => Promise<void>;
 }

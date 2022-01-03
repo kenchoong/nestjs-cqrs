@@ -7,7 +7,7 @@ import { UsersModule } from './users/users.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ProductEntity } from './product/infrastructure/postgres/entities/product.entity';
 
-import { config } from './common/config/ormconfig';
+import { config } from './common/db/ormconfig';
 
 @Module({
   imports: [

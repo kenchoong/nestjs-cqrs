@@ -35,7 +35,7 @@ export class ProductQueryImplement implements ProductQuery {
    */
   private convertProductFromEntity(
     entity?: ProductEntity,
-  ): ProductEntity | undefined {
+  ): Product | undefined {
     return entity
       ? { ...entity, createdAt: entity.createdAt, updatedAt: entity.updatedAt }
       : undefined;
