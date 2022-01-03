@@ -27,7 +27,6 @@ export const config: TypeOrmModuleOptions = {
  * @returns string Directory path to put the migration file
  */
 function getMigrationDirectory() {
-  console.log(`${__dirname}`);
   return process.env.NODE_ENV === 'migration'
     ? `src/common/migrations/**/*{.ts,.js}`
     : `${__dirname}/migrations/**/*{.ts,.js}`;

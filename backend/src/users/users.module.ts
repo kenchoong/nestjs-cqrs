@@ -6,7 +6,7 @@ import { GetUserByUsernameQueryHandler } from './application/get-user-by-usernam
 import { UserFactory } from './domain/factory';
 import { UserQueryImplement } from './infrastructure/postgres/user.query';
 import { UserRepositoryImplement } from './infrastructure/postgres/user.repository';
-import { UsersController } from './users/users.controller';
+import { UsersController } from './interface/users.controller';
 
 const infrastructure = [
   {
