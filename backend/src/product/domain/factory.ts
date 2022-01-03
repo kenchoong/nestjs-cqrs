@@ -22,7 +22,7 @@ export class ProductFactory {
    */
   create(
     id: string,
-    price: string,
+    price: number,
     name: string,
     description: string,
   ): Product {

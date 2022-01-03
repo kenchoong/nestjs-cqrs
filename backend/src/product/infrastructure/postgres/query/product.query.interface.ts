@@ -1,6 +1,6 @@
 export class Product {
   readonly id: string;
-  readonly price: string;
+  readonly price: number;
   readonly name: string;
   readonly description: string;
   readonly createdAt: Date | null;
@@ -9,7 +9,7 @@ export class Product {
 
 export class EachItemInProduct {
   readonly id: string;
-  readonly price: string;
+  readonly price: number;
   readonly name: string;
   readonly description: string;
   readonly createdAt: Date | null;

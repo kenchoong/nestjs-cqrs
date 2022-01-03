@@ -8,7 +8,7 @@ export class ProductEntity extends BaseEntity {
   id!: string;
 
   @Column({ type: 'decimal', precision: 10, scale: 2 })
-  price = '';
+  price = 0.0;
 
   @Column({ type: 'varchar' })
   name = '';

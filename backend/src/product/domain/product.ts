@@ -3,7 +3,7 @@ import { AggregateRoot } from '@nestjs/cqrs';
 
 export type ProductEssestialProperties = Required<{
   readonly id: string;
-  readonly price: string;
+  readonly price: number;
   readonly name: string;
 }>;
 
@@ -33,7 +33,7 @@ export interface Product {
    * @description: Validate the price before insert to db
    * @param: The price receive from request
    */
-  validatePrice: (price: string) => void;
+  validatePrice: (price: number) => void;
 
   /**
    * @description: Nestjs CQRS commit the command
@@ -44,7 +44,7 @@ export interface Product {
 
 export class ProductImpl extends AggregateRoot implements Product {
   readonly id: string;
-  readonly price: string;
+  readonly price: number;
   readonly name: string;
   readonly description: string;
   readonly createdAt: Date | null;
@@ -82,8 +82,8 @@ export class ProductImpl extends AggregateRoot implements Product {
       throw new UnprocessableEntityException('Name is empty');
     }
   }
-  validatePrice(price: string): void {
-    if (price === '') {
+  validatePrice(price: number): void {
+    if (price <= 0) {
       throw new UnprocessableEntityException('Price is empty');
     }
   }

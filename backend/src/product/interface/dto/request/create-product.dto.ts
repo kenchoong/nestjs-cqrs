@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsString, MinLength } from 'class-validator';
+import { IsString, MinLength, IsNumber } from 'class-validator';
 
 /**
  * @description using class validator to valid the request
@@ -11,9 +11,9 @@ export class CreateProductDto {
   @ApiProperty({ minLength: 3, example: 'Mee' })
   readonly name: string;
 
-  @IsString()
-  @ApiProperty({ minLength: 4, example: 'RM 4.00' })
-  readonly price: string;
+  @IsNumber()
+  @ApiProperty({ minLength: 4, example: '4.13' })
+  readonly price: number;
 
   @IsString()
   @MinLength(5)
