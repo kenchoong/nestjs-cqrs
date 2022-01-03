@@ -1,4 +1,4 @@
-import { Controller, Get, Param, Post, Body, Query, Res } from '@nestjs/common';
+import { Controller, Get, Param, Post, Body, Query } from '@nestjs/common';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import {
   ApiBadRequestResponse,
