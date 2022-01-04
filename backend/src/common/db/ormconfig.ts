@@ -1,6 +1,8 @@
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { UserEntity } from '../../users/infrastructure/postgres/user.entity';
 import { ProductEntity } from '../../product/infrastructure/postgres/entities/product.entity';
+import { OrderProductsEntity } from '../../orders/instrastructure/postgres/order-product.entity';
+import { OrderEntity } from '../../orders/instrastructure/postgres/order.entity';
 
 export const config: TypeOrmModuleOptions = {
   name: 'default',
@@ -10,7 +12,7 @@ export const config: TypeOrmModuleOptions = {
   username: 'postgres',
   password: 'postgres',
   database: 'lavax_db',
-  entities: [ProductEntity, UserEntity],
+  entities: [ProductEntity, UserEntity, OrderEntity, OrderProductsEntity],
   synchronize: false,
   migrations: [getMigrationDirectory()],
   migrationsTableName: 'migrations_typeorm',

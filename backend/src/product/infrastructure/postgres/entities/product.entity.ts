@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { OrderProductsEntity } from 'src/orders/instrastructure/postgres/order-product.entity';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
 
 import { BaseEntity } from '../../../../common/db/base.entity';
 

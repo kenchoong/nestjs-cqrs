@@ -2,6 +2,7 @@ import React from "react";
 import { ChakraProvider, Flex } from "@chakra-ui/react";
 
 import customTheme from "../../utils/themes";
+import Header from "./header";
 
 const Layout: React.FC = ({ children }) => {
   return (
@@ -14,6 +15,7 @@ const Layout: React.FC = ({ children }) => {
         m="0 auto"
         paddingBottom="60px"
       >
+        <Header />
         {children}
       </Flex>
     </ChakraProvider>

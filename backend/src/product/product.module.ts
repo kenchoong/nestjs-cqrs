@@ -34,5 +34,6 @@ const domain = [ProductFactory];
   imports: [CqrsModule],
   controllers: [ProductController],
   providers: [...application, ...infrasturucture, ...domain],
+  exports: [...application, ...infrasturucture, ...domain],
 })
 export class ProductModule {}

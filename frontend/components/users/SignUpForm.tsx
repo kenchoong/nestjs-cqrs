@@ -10,14 +10,7 @@ import {
   Button,
   Text,
 } from "@chakra-ui/react";
-import {
-  Field,
-  FieldProps,
-  Form,
-  Formik,
-  FormikHelpers,
-  FormikProps,
-} from "formik";
+import { Field, FieldProps, Form, Formik, FormikHelpers } from "formik";
 import { createUser } from "../../services/userDataSource";
 import { useRouter } from "next/router";
 
@@ -37,7 +30,7 @@ const SignUpForm: React.FC<SignUpFormProps> = ({}) => {
     let error;
     if (!value) {
       error = "username is required";
-    } else if (value.username.length < 5) {
+    } else if (value.length < 5) {
       error = "at least 5 characters bro";
     }
     return error;
@@ -87,8 +80,8 @@ const SignUpForm: React.FC<SignUpFormProps> = ({}) => {
                   isInvalid={form.errors.username && form.touched.username}
                   mt={4}
                 >
-                  <FormLabel htmlFor="email">Username</FormLabel>
-                  <Input {...field} id="name" type="text" />
+                  <FormLabel htmlFor="username">Username</FormLabel>
+                  <Input {...field} id="username" type="text" />
                   <FormHelperText>
                     Just type in any 5 character, then will create an user, and
                     return a userId
