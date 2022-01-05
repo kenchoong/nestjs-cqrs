@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { CqrsModule } from '@nestjs/cqrs';
-import { ModuleInjectionToken } from 'src/users/application/module-injection.token';
+import { UserModuleInjectionToken } from 'src/users/application/user-module-injection.token';
 import { CreateUserCommandHandler } from './application/create-user/create-user.handler';
 import { GetUserByUsernameQueryHandler } from './application/get-user-by-username/get-user-by-username.handler';
 import { UserFactory } from './domain/factory';
@@ -10,11 +10,11 @@ import { UsersController } from './interface/users.controller';
 
 const infrastructure = [
   {
-    provide: ModuleInjectionToken.USER_QUERY,
+    provide: UserModuleInjectionToken.USER_QUERY,
     useClass: UserQueryImplement,
   },
   {
-    provide: ModuleInjectionToken.USER_REPOSITORY,
+    provide: UserModuleInjectionToken.USER_REPOSITORY,
     useClass: UserRepositoryImplement,
   },
 ];
@@ -27,5 +27,6 @@ const domain = [UserFactory];
   imports: [CqrsModule],
   controllers: [UsersController],
   providers: [...application, ...infrastructure, ...domain],
+  exports: [...application, ...infrastructure, ...domain],
 })
 export class UsersModule {}

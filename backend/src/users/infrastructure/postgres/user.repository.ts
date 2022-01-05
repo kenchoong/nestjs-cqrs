@@ -14,6 +14,11 @@ export class UserRepositoryImplement implements UserRepository {
     await getRepository(UserEntity).save(userEntity);
   }
 
+  async findById(id: string): Promise<UserEntity | null> {
+    const entity = await getRepository(UserEntity).findOne({ id });
+    return entity;
+  }
+
   private modelToEntity(model: User): UserEntity {
     const properties = model.properties();
 

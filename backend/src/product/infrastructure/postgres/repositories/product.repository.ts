@@ -1,7 +1,7 @@
 import { Inject } from '@nestjs/common';
 import { Product } from 'src/product/domain/product';
 import { ProductRepository } from 'src/product/domain/repository';
-import { getRepository } from 'typeorm';
+import { getRepository, In } from 'typeorm';
 import { ProductEntity } from '../entities/product.entity';
 import { ProductFactory } from '../../../domain/factory';
 
@@ -33,6 +33,16 @@ export class ProductRepoImplement implements ProductRepository {
   async create(data: Product): Promise<void> {
     const entities = this.modelToEntity(data);
     await getRepository(ProductEntity).save(entities);
+  }
+
+  async findById(id: string): Promise<ProductEntity | null> {
+    const entity = await getRepository(ProductEntity).findOne({ id });
+    return entity;
+  }
+
+  async findEntityByIds(ids: string[]): Promise<ProductEntity[] | null> {
+    const entities = await getRepository(ProductEntity).find({ id: In(ids) });
+    return entities;
   }
 
   /**

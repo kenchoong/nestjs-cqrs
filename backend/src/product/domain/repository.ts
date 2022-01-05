@@ -1,3 +1,4 @@
+import { ProductEntity } from '../infrastructure/postgres/entities/product.entity';
 import { Product } from './product';
 
 /**
@@ -17,4 +18,8 @@ export interface ProductRepository {
    *
    */
   create: (data: Product) => Promise<void>;
+
+  findById: (id: string) => Promise<ProductEntity | null>;
+
+  findEntityByIds: (ids: string[]) => Promise<ProductEntity[] | null>;
 }

@@ -1,7 +1,7 @@
 import { Inject, NotFoundException } from '@nestjs/common';
 import { QueryHandler, IQueryHandler } from '@nestjs/cqrs';
 import { UserQuery } from 'src/users/domain/query';
-import { ModuleInjectionToken } from '../module-injection.token';
+import { UserModuleInjectionToken } from '../user-module-injection.token';
 import { GetUserByUsernameQuery } from './get-user-by-username.query';
 
 @QueryHandler(GetUserByUsernameQuery)
@@ -9,7 +9,7 @@ export class GetUserByUsernameQueryHandler
   implements IQueryHandler<GetUserByUsernameQuery, void>
 {
   constructor(
-    @Inject(ModuleInjectionToken.USER_QUERY)
+    @Inject(UserModuleInjectionToken.USER_QUERY)
     private readonly userQuery: UserQuery,
   ) {}
 

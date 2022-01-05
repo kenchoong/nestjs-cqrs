@@ -2,7 +2,7 @@ import { Inject } from '@nestjs/common';
 import { CommandHandler, ICommandHandler } from '@nestjs/cqrs';
 import { UserFactory } from 'src/users/domain/factory';
 import { UserRepository } from 'src/users/domain/repository';
-import { ModuleInjectionToken } from '../module-injection.token';
+import { UserModuleInjectionToken } from '../user-module-injection.token';
 import { CreateUserCommand } from './create-user.command';
 
 @CommandHandler(CreateUserCommand)
@@ -10,7 +10,7 @@ export class CreateUserCommandHandler
   implements ICommandHandler<CreateUserCommand, void>
 {
   constructor(
-    @Inject(ModuleInjectionToken.USER_REPOSITORY)
+    @Inject(UserModuleInjectionToken.USER_REPOSITORY)
     private readonly userRepo: UserRepository,
 
     private readonly userFactory: UserFactory,

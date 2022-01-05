@@ -21,10 +21,9 @@ export class OrderProductsEntity extends BaseEntity {
   @Column({ type: 'decimal', precision: 10, scale: 2 })
   productTotal = 0.0;
 
-  @ManyToOne(() => OrderEntity, (order) => order.orderProduct)
+  @ManyToOne(() => OrderEntity, (order) => order)
   order: OrderEntity;
 
-  @ManyToMany(() => ProductEntity)
-  @JoinTable()
-  product: ProductEntity[];
+  @ManyToOne(() => ProductEntity, (product) => product.id)
+  product: ProductEntity;
 }
