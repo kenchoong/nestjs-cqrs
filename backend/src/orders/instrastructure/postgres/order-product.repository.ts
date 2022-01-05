@@ -1,6 +1,6 @@
 import { OrderProduct } from 'src/orders/domain/order-product/order-product';
 import { OrderProductRepository } from 'src/orders/domain/order-product/order-product-repository';
-import { getRepository, getManager } from 'typeorm';
+import { getRepository } from 'typeorm';
 import { OrderProductsEntity } from './order-product.entity';
 
 export class OrderProductRepositoryImplement implements OrderProductRepository {

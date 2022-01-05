@@ -1,8 +1,7 @@
 import { AggregateRoot } from '@nestjs/cqrs';
 import { OrderEntity } from 'src/orders/instrastructure/postgres/order.entity';
-import { ProductProperties } from 'src/product/domain/product';
 import { ProductEntity } from 'src/product/infrastructure/postgres/entities/product.entity';
-import { OptionalProperties, Order, OrderProperties } from '../order/order';
+import { OptionalProperties } from '../order/order';
 
 export type OrderProductEssentialProperties = {
   readonly id: string;
