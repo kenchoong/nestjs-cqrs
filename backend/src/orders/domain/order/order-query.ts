@@ -1,5 +1,3 @@
-import { User } from 'src/users/domain/query';
-
 export class EachOrderProduct {
   readonly id: string;
   readonly quantity: number;
@@ -21,8 +19,4 @@ export class Order {
 
 export interface OrderQuery {
   findById: (orderId: string) => Promise<Order>;
-  /*
-  findOrderProduct: (orderId: string) => Promise<OrderProducts>;
-
-  findOrderUser: () => Promise<User>;*/
 }

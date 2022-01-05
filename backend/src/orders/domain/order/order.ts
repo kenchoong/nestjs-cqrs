@@ -1,9 +1,7 @@
 import { AggregateRoot } from '@nestjs/cqrs';
 import { OrderProductsEntity } from 'src/orders/instrastructure/postgres/order-product.entity';
-import { OrderEntity } from 'src/orders/instrastructure/postgres/order.entity';
 import { UserProperties } from 'src/users/domain/user';
 import { UserEntity } from 'src/users/infrastructure/postgres/user.entity';
-import { OrderProductProperties } from '../order-product/order-product';
 
 export type OptionalProperties = Partial<{
   readonly createdAt: Date | null;

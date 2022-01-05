@@ -1,14 +1,11 @@
 import { Module, Provider } from '@nestjs/common';
 import { CqrsModule } from '@nestjs/cqrs';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { ProductEntity } from 'src/product/infrastructure/postgres/entities/product.entity';
 import { ProductModule } from 'src/product/product.module';
 import { UsersModule } from 'src/users/users.module';
 import { CreateOrderCommandHandler } from './application/create-order/create-order.handler';
 import { GetOrderByIdHandler } from './application/get-order-by-id/get-order-by-id.handler';
 import { OrderInjectionModuleToken } from './application/order-injection-module.token';
 import { OrderProductFactory } from './domain/order-product/order-product-factory';
-import { OrderImplement } from './domain/order/order';
 import { OrderFactory } from './domain/order/order-factory';
 import { OrderProductRepositoryImplement } from './instrastructure/postgres/order-product.repository';
 import { OrderRepoImplement } from './instrastructure/postgres/order-repository';

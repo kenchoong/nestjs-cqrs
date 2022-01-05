@@ -1,9 +1,7 @@
 import { Inject } from '@nestjs/common';
 import { EventPublisher } from '@nestjs/cqrs';
 import { OrderEntity } from 'src/orders/instrastructure/postgres/order.entity';
-import { ProductProperties } from 'src/product/domain/product';
 import { ProductEntity } from 'src/product/infrastructure/postgres/entities/product.entity';
-import { OrderProperties } from '../order/order';
 
 import {
   OrderProduct,

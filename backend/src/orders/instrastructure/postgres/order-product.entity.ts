@@ -1,12 +1,5 @@
 import { BaseEntity } from '../../../common/db/base.entity';
-import {
-  Entity,
-  PrimaryGeneratedColumn,
-  Column,
-  ManyToOne,
-  ManyToMany,
-  JoinTable,
-} from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
 import { ProductEntity } from '../../../product/infrastructure/postgres/entities/product.entity';
 import { OrderEntity } from './order.entity';
 
