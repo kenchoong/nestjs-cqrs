@@ -30,6 +30,7 @@ export class OrderProductImplement
   readonly order: OrderEntity;
   readonly product: ProductEntity;
 
+  readonly orderStatus: string | null;
   readonly updatedAt: Date | null;
   readonly createdAt: Date | null;
   readonly deletedAt: Date | null;
@@ -52,6 +53,7 @@ export class OrderProductImplement
       order: this.order,
       product: this.product,
 
+      orderStatus: this.orderStatus,
       createdAt: this.createdAt,
       updatedAt: this.updatedAt,
       deletedAt: this.deletedAt,

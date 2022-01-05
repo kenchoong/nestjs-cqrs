@@ -4,6 +4,7 @@ import { UserProperties } from 'src/users/domain/user';
 import { UserEntity } from 'src/users/infrastructure/postgres/user.entity';
 
 export type OptionalProperties = Partial<{
+  readonly orderStatus: string | null;
   readonly createdAt: Date | null;
   readonly updatedAt: Date | null;
   readonly deletedAt: Date | null;
@@ -29,6 +30,7 @@ export class OrderImplement extends AggregateRoot implements Order {
   readonly grandTotal: number;
   readonly orderProduct: OrderProductsEntity[];
   readonly user: UserProperties;
+  readonly orderStatus: string | null;
   readonly createdAt: Date | null;
   readonly updatedAt: Date | null;
   readonly deletedAt: Date | null;
@@ -41,6 +43,7 @@ export class OrderImplement extends AggregateRoot implements Order {
   properties(): OrderProperties {
     return {
       id: this.id,
+      orderStatus: this.orderStatus,
       grandTotal: this.grandTotal,
       orderProduct: this.orderProduct,
       user: this.user,

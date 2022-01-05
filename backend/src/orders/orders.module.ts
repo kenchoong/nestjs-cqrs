@@ -11,6 +11,7 @@ import { OrderProductRepositoryImplement } from './instrastructure/postgres/orde
 import { OrderRepoImplement } from './instrastructure/postgres/order-repository';
 import { OrderQueryImplement } from './instrastructure/postgres/order.query';
 import { OrdersController } from './interface/orders.controller';
+import { StripeModule } from 'nestjs-stripe';
 
 const infrastructure: Provider[] = [
   {

@@ -28,7 +28,7 @@ export class OrderQueryImplement implements OrderQuery {
     return this.convertOrderFromEntity(
       await getRepository(OrderEntity).findOne({
         where: { id: orderId },
-        relations: ['user', 'orderProduct'],
+        relations: ['user', 'orderProduct', 'orderProduct.product'],
       }),
     );
   }

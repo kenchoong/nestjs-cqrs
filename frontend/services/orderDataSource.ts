@@ -16,3 +16,7 @@ export const createOrder = (
 
   return API.post(path, body);
 };
+
+export const getOrderById = (orderId: string) => {
+  return API.get("/orders/" + orderId);
+};

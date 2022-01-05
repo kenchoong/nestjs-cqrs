@@ -17,6 +17,10 @@ export class OrderRepoImplement implements OrderRepository {
     return await getRepository(OrderEntity).save(orderEntity);
   }
 
+  async update(id: string, status: string): Promise<void> {
+    await getRepository(OrderEntity).update(id, { orderStatus: status });
+  }
+
   /*
   async update(orderId: string): Promise<void> {
     await getRepository(OrderEntity).update(orderId, (order = []));

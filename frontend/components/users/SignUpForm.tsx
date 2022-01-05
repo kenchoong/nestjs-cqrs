@@ -13,6 +13,7 @@ import {
 import { Field, FieldProps, Form, Formik, FormikHelpers } from "formik";
 import { createUser } from "../../services/userDataSource";
 import { useRouter } from "next/router";
+import { useAuth } from "./useAuth";
 
 interface SignUpFormProps {}
 
@@ -22,6 +23,7 @@ interface SignUpFormValueProps {
 
 const SignUpForm: React.FC<SignUpFormProps> = ({}) => {
   const router = useRouter();
+  const { setUser } = useAuth();
 
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
@@ -51,6 +53,9 @@ const SignUpForm: React.FC<SignUpFormProps> = ({}) => {
           console.log(data.id);
           console.log(data.username);
           setSubmitting(false);
+
+          localStorage.setItem("lavaUserId", JSON.stringify(data));
+          setUser(data);
 
           router.push("/products");
         }

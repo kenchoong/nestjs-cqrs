@@ -15,6 +15,9 @@ export class OrderEntity extends BaseEntity {
   @PrimaryGeneratedColumn('uuid')
   id!: string;
 
+  @Column({ type: 'varchar', default: 'PENDING' })
+  orderStatus = 'PENDING';
+
   @Column({ type: 'decimal', precision: 10, scale: 2 })
   grandTotal = 0.0;
 

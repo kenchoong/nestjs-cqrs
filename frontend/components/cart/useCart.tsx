@@ -45,6 +45,8 @@ export interface CartContextInterface {
    */
   cartItemArray: Product[] | null;
 
+  setCartItemArray: Dispatch<Product[] | null>;
+
   /**
    * @description Manipulate cart array to array that presentable to user AKA remove
    */
@@ -54,6 +56,8 @@ export interface CartContextInterface {
    * @description Processed array, to present to user
    */
   processedCartArray: ProcessedCart[] | null;
+
+  setProcessCartArray: Dispatch<ProcessedCart[] | null>;
 
   /**
    * @description add a product object into CartItemArry
@@ -167,8 +171,10 @@ function useCartOperation() {
    */
   return {
     cartItemArray,
+    setCartItemArray,
     processArray,
     processedCartArray,
+    setProcessCartArray,
     appendProductToCart,
     clearAllProductFromCart,
   };

@@ -1,11 +1,9 @@
 import { Inject, NotFoundException } from '@nestjs/common';
 import { CommandHandler, ICommandHandler } from '@nestjs/cqrs';
-import { OrderProductImplement } from 'src/orders/domain/order-product/order-product';
 import { OrderProductFactory } from 'src/orders/domain/order-product/order-product-factory';
 import { OrderProductRepository } from 'src/orders/domain/order-product/order-product-repository';
 import { OrderFactory } from 'src/orders/domain/order/order-factory';
 import { OrderRepository } from 'src/orders/domain/order/order-repository';
-import { OrderEntity } from 'src/orders/instrastructure/postgres/order.entity';
 import { ModuleInjectionToken } from 'src/product/application/module-injection.token';
 import { ProductFactory } from 'src/product/domain/factory';
 import { ProductRepository } from 'src/product/domain/repository';
@@ -13,7 +11,7 @@ import { ProductQuery } from 'src/product/infrastructure/postgres/query/product.
 import { UserModuleInjectionToken } from 'src/users/application/user-module-injection.token';
 import { UserRepository } from 'src/users/domain/repository';
 import { OrderInjectionModuleToken } from '../order-injection-module.token';
-import { CreateOrderCommand, OrderProduct } from './create-order.command';
+import { CreateOrderCommand } from './create-order.command';
 
 @CommandHandler(CreateOrderCommand)
 export class CreateOrderCommandHandler
@@ -22,10 +20,6 @@ export class CreateOrderCommandHandler
   constructor(
     @Inject(ModuleInjectionToken.PRODUCT_REPOSITORY)
     private readonly productRepo: ProductRepository,
-
-    @Inject(ModuleInjectionToken.PRODUCT_QUERY)
-    private readonly productQuery: ProductQuery,
-    private readonly productFactory: ProductFactory,
 
     @Inject(OrderInjectionModuleToken.ORDER_PRODUCT_REPO)
     private readonly orderProductRepo: OrderProductRepository,
@@ -89,8 +83,6 @@ export class CreateOrderCommandHandler
         return await this.orderProductRepo.create(product);
       }),
     );
-
-    //console.log(orderProductEntityArray);
 
     const newlyOrder = this.orderFactory.create(
       order.properties().id,

@@ -5,4 +5,6 @@ export interface OrderRepository {
   newOrderId(): Promise<string>;
 
   create: (data: Order) => Promise<OrderEntity>;
+
+  update: (id: string, status: string) => Promise<void>;
 }
