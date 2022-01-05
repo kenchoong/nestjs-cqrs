@@ -6,7 +6,7 @@ import { ProductEntity } from 'src/product/infrastructure/postgres/entities/prod
 import {
   OrderProduct,
   OrderProductImplement,
-  OrderProductProperties,
+  // OrderProductProperties,
 } from './order-product';
 
 export class OrderProductFactory {
@@ -32,7 +32,8 @@ export class OrderProductFactory {
     );
   }
 
+  /*
   restructure(properties: OrderProductProperties): OrderProduct {
     return;
-  }
+  }*/
 }
