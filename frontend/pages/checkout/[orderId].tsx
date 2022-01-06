@@ -2,8 +2,9 @@ import { Button, Flex, Heading, Text, Link } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import Layout from "../../components/layout/Layout";
-import { getOrderById } from "../../services/orderDataSource";
+import { getCheckoutUrl, getOrderById } from "../../services/orderDataSource";
 import NextLink from "next/link";
+import StripePaymentComponent from "../../components/payment/StripePaymentComponent";
 
 interface checkoutProps {}
 
@@ -13,10 +14,11 @@ const CheckoutPage: React.FC<checkoutProps> = ({}) => {
   const { orderId } = router.query;
 
   const [order, setOrder] = useState<any>(null);
-  const [orderProduct, setOrderProduct] = useState(null);
 
   useEffect(() => {
     if (orderId) {
+      localStorage.setItem("lavaxOrderId", orderId.toString());
+
       getOrderById(orderId.toString())
         .then((res) => {
           console.log(res.data);
@@ -26,24 +28,33 @@ const CheckoutPage: React.FC<checkoutProps> = ({}) => {
     }
   }, [orderId]);
 
-  useEffect(() => {
-    if (order) {
-      // here do the Stripe stuff
-    }
-  }, [order]);
+  const checkout = () => {
+    getCheckoutUrl(order.id)
+      .then((res) => {
+        if (res.status !== 201) console.log("abc");
 
-  //console.log(order.orderProduct);
+        const url = res.data.url;
+        router.push(url);
+      })
+      .catch((error) => {
+        console.log(error);
+        console.log("Cant checkout");
+      });
+  };
 
-  //+console.log(order.orderProduct);
   return (
     <Layout>
       {order && (
         <Flex direction="column">
           <Heading size="md">Your orderId: {order.id}</Heading>
+          <Flex mt={8} mb={8} justify="space-between">
+            <Heading size="sm">Item in order</Heading>
 
-          <Heading size="sm" mt={8} mb={8}>
-            Item in order
-          </Heading>
+            <Text color="blue" fontWeight="bold">
+              Status: {order.orderStatus}
+            </Text>
+          </Flex>
+
           <Flex mt={8} direction="column">
             {order &&
               order.orderProduct.map((products: any, key: number) => {
@@ -71,9 +82,13 @@ const CheckoutPage: React.FC<checkoutProps> = ({}) => {
             Grand total : RM {order.grandTotal}
           </Text>
 
-          <Button colorScheme="green" mt={8}>
+          <Flex mt={8}>
+            <StripePaymentComponent orderId={order.id} />
+          </Flex>
+
+          {/*<Button colorScheme="green" mt={8} onClick={() => checkout()}>
             Pay
-          </Button>
+            </Button>*/}
         </Flex>
       )}
     </Layout>

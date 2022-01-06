@@ -63,8 +63,6 @@ const ProductPage: React.FC<productsProps> = ({}) => {
   useEffect(() => {
     getProductList()
       .then((res) => {
-        console.log(res.data);
-
         if (res.status === 200) {
           const data = res.data;
 

@@ -19,12 +19,6 @@ const Header: React.FC<headerProps> = ({}) => {
             Cart
           </Button>
         </NextLink>
-
-        <NextLink href="/orders" passHref>
-          <Button mr={4} colorScheme="red">
-            My Order
-          </Button>
-        </NextLink>
       </Flex>
     </Flex>
   );

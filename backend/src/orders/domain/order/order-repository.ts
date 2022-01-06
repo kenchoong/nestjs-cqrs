@@ -7,4 +7,9 @@ export interface OrderRepository {
   create: (data: Order) => Promise<OrderEntity>;
 
   update: (id: string, status: string) => Promise<void>;
+
+  updatePaymentIntentId: (
+    orderId: string,
+    paymentIntentId: string,
+  ) => Promise<void>;
 }

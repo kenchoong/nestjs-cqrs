@@ -11,24 +11,19 @@ import { OrderEntity } from './order.entity';
 
 @Injectable()
 export class OrderQueryImplement implements OrderQuery {
-  /*
-  async findOrderProduct(orderId: string): Promise<OrderProducts> {
-    return this.convertOrderProductsFromEntity(
-      await getRepository(OrderEntity).find({ relations: ['orderProducts'] }),
-    );
-  }
-
-  async findOrderUser(): Promise<User> {
-    return this.convertUserFromEntity(
-      await getRepository(OrderEntity).find({ relations: ['user'] }),
-    );
-  }*/
-
   async findById(orderId: string): Promise<undefined | Order> {
     return this.convertOrderFromEntity(
       await getRepository(OrderEntity).findOne({
         where: { id: orderId },
         relations: ['user', 'orderProduct', 'orderProduct.product'],
+      }),
+    );
+  }
+
+  async findOrderByPaymentIntentId(paymentIntentId: string): Promise<Order> {
+    return this.convertOrderFromEntity(
+      await getRepository(OrderEntity).findOne({
+        where: { orderPaymentIntentId: paymentIntentId },
       }),
     );
   }

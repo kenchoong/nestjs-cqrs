@@ -34,13 +34,12 @@ export class CreateOrderCommandHandler
   ) {}
 
   async execute(command: CreateOrderCommand): Promise<any> {
-    console.log('command handler', command.orderProduct);
-
     // get the user entity first
     const user = await this.userRepo.findById(command.userId);
 
     if (!user) throw new NotFoundException('No user is found');
 
+    // make a blank order first
     const order = this.orderFactory.create(
       await this.orderRepo.newOrderId(),
       command.grandTotal,
@@ -49,8 +48,9 @@ export class CreateOrderCommandHandler
     );
 
     const orderEntity = await this.orderRepo.create(order);
-    console.log('original orderid', orderEntity);
 
+    // make a OrderProduct Object,
+    // push the product, quantity and totalOfThis product in an array
     const productArray = await Promise.all(
       command.orderProduct.map(async (orderProductData) => {
         const product = await this.productRepo.findById(
@@ -69,6 +69,7 @@ export class CreateOrderCommandHandler
       }),
     );
 
+    // If the productArray, have undefined product, throw error
     if (
       productArray.filter(
         (product) => product.properties().product === undefined,
@@ -76,12 +77,14 @@ export class CreateOrderCommandHandler
     )
       throw new NotFoundException('One of the product is not found');
 
+    // If not, create OrderProductEntity, AKA go in db
     const orderProductEntityArray = await Promise.all(
       productArray.map(async (product) => {
         return await this.orderProductRepo.create(product);
       }),
     );
 
+    // update all the OrderProductEntity into the Order Create just now
     const newlyOrder = this.orderFactory.create(
       order.properties().id,
       command.grandTotal,
@@ -90,8 +93,6 @@ export class CreateOrderCommandHandler
     );
 
     const newOrderEntity = await this.orderRepo.create(newlyOrder);
-
-    console.log('updatedOrderId', newOrderEntity);
 
     return newOrderEntity;
   }

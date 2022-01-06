@@ -1,0 +1,10 @@
+version: "3"
+
+services:
+  next_js:
+    image: kenchoong012/lavax:frontend
+    ports:
+      - "3003:3000"
+    env_file:
+      - .env
+    restart: unless-stopped

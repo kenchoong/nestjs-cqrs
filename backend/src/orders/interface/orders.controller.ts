@@ -4,7 +4,6 @@ import { ApiNotFoundResponse, ApiResponse } from '@nestjs/swagger';
 import { CreateOrderCommand } from '../application/create-order/create-order.command';
 import { GetOrderByIdQuery } from '../application/get-order-by-id/get-order-by-id.query';
 import { CreateOrderDto } from './dto/request/create-order.dto';
-import { CreateOrderResponseDto } from './dto/response/crreate-order.response.dto';
 
 @Controller('orders')
 export class OrdersController {

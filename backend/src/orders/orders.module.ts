@@ -7,6 +7,7 @@ import { GetOrderByIdHandler } from './application/get-order-by-id/get-order-by-
 import { OrderInjectionModuleToken } from './application/order-injection-module.token';
 import { OrderProductFactory } from './domain/order-product/order-product-factory';
 import { OrderFactory } from './domain/order/order-factory';
+import { PaymentEventHandler } from './event/payment-event/payment-event.handler';
 import { OrderProductRepositoryImplement } from './instrastructure/postgres/order-product.repository';
 import { OrderRepoImplement } from './instrastructure/postgres/order-repository';
 import { OrderQueryImplement } from './instrastructure/postgres/order.query';
@@ -27,7 +28,11 @@ const infrastructure: Provider[] = [
   },
 ];
 
-const application = [CreateOrderCommandHandler, GetOrderByIdHandler];
+const application = [
+  CreateOrderCommandHandler,
+  GetOrderByIdHandler,
+  PaymentEventHandler,
+];
 
 const domain = [OrderProductFactory, OrderFactory];
 
@@ -35,5 +40,6 @@ const domain = [OrderProductFactory, OrderFactory];
   imports: [CqrsModule, UsersModule, ProductModule],
   controllers: [OrdersController],
   providers: [...application, ...infrastructure, ...domain],
+  exports: [...application, ...infrastructure, ...domain],
 })
 export class OrdersModule {}

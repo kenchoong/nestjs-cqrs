@@ -21,6 +21,9 @@ export class OrderEntity extends BaseEntity {
   @Column({ type: 'decimal', precision: 10, scale: 2 })
   grandTotal = 0.0;
 
+  @Column({ type: 'varchar', default: null })
+  orderPaymentIntentId: string | null;
+
   @OneToMany(() => OrderProductsEntity, (orderProduct) => orderProduct.order, {
     cascade: true,
   })

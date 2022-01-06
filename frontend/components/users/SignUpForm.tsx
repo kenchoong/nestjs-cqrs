@@ -38,33 +38,7 @@ const SignUpForm: React.FC<SignUpFormProps> = ({}) => {
     return error;
   };
 
-  const handleSubmit = async (
-    values: SignUpFormValueProps,
-    { setSubmitting }: FormikHelpers<SignUpFormProps>
-  ) => {
-    createUser(values.username)
-      .then((res) => {
-        if (res.status !== 201) {
-          setErrorMessage("cant create user");
-          setSubmitting(false);
-        } else {
-          const data = res.data;
-
-          console.log(data.id);
-          console.log(data.username);
-          setSubmitting(false);
-
-          localStorage.setItem("lavaUserId", JSON.stringify(data));
-          setUser(data);
-
-          router.push("/products");
-        }
-      })
-      .catch((error) => {
-        setErrorMessage(error.message);
-        setSubmitting(false);
-      });
-  };
+  //const handleSubmit =
 
   return (
     <Box p={4} w={["90%", "90%", "60%", "30%"]} mx="auto" mt={8}>
@@ -72,18 +46,44 @@ const SignUpForm: React.FC<SignUpFormProps> = ({}) => {
         Hello, create an user
       </Heading>
 
-      <Heading color="muted.400" size="xs" mt={4}>
+      <Heading color="muted.400" size="xs" mt={4} mb={8}>
         Just username, for stake of simplicity
       </Heading>
 
-      <Formik initialValues={{ username: "" }} onSubmit={handleSubmit}>
+      <Formik
+        initialValues={{ username: "" }}
+        onSubmit={(values, actions) => {
+          createUser(values.username)
+            .then((res) => {
+              if (res.status !== 201) {
+                setErrorMessage("cant create user");
+                actions.setSubmitting(false);
+              } else {
+                const data = res.data;
+
+                console.log(data.id);
+                console.log(data.username);
+                actions.setSubmitting(false);
+
+                localStorage.setItem("lavaUserId", JSON.stringify(data));
+                setUser(data);
+
+                router.push("/products");
+              }
+            })
+            .catch((error) => {
+              setErrorMessage(error.message);
+              actions.setSubmitting(false);
+            });
+        }}
+      >
         {(props) => (
           <Form>
             <Field name="username" validate={validateUsername}>
               {({ field, form }: FieldProps) => (
                 <FormControl
-                  isInvalid={form.errors.username && form.touched.username}
                   mt={4}
+                  isInvalid={form.errors.username ? true : false}
                 >
                   <FormLabel htmlFor="username">Username</FormLabel>
                   <Input {...field} id="username" type="text" />

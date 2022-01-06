@@ -11,8 +11,15 @@ export type OrderProductEssentialProperties = {
   readonly product: ProductEntity;
 };
 
+export type OrderProductOptionalProperties = Partial<{
+  readonly createdAt: Date | null;
+  readonly updatedAt: Date | null;
+  readonly deletedAt: Date | null;
+  readonly version: number;
+}>;
+
 export type OrderProductProperties = OrderProductEssentialProperties &
-  Required<OptionalProperties>;
+  Required<OrderProductOptionalProperties>;
 
 export interface OrderProduct {
   properties: () => OrderProductProperties;
@@ -29,7 +36,6 @@ export class OrderProductImplement
   readonly order: OrderEntity;
   readonly product: ProductEntity;
 
-  readonly orderStatus: string | null;
   readonly updatedAt: Date | null;
   readonly createdAt: Date | null;
   readonly deletedAt: Date | null;
@@ -51,8 +57,6 @@ export class OrderProductImplement
       productTotal: this.productTotal,
       order: this.order,
       product: this.product,
-
-      orderStatus: this.orderStatus,
       createdAt: this.createdAt,
       updatedAt: this.updatedAt,
       deletedAt: this.deletedAt,
