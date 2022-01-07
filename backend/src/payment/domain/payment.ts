@@ -40,6 +40,10 @@ export class PaymentImplement extends AggregateRoot implements Payment {
     };
   }
 
+  /**
+   * @description trigger event to Order module
+   * @refer https://docs.nestjs.com/recipes/cqrs#events
+   */
   succeed(): void {
     this.apply(
       Object.assign(new PaymentEvent(), {
@@ -49,6 +53,10 @@ export class PaymentImplement extends AggregateRoot implements Payment {
     );
   }
 
+  /**
+   * @description trigger event to Order module
+   * @refer https://docs.nestjs.com/recipes/cqrs#events
+   */
   failed(): void {
     this.apply(
       Object.assign(new PaymentEvent(), {
