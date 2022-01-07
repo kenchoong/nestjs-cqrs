@@ -129,12 +129,12 @@ The migration script already setup in `package.json`, so u can run this:
 > Note: if in localhost, generate migration having the connect database problem, 
 
    -  first, need to start the postgres server, if it still exist,
-   -  hardcode the host and port in `backend/src/common/db/ormconfig.ts` file, like this:
+   -  hardcode the host and port in [this file](https://github.com/kenchoong/nestjs-cqrs/blob/b51d59a6d6bd7e0f4427a3cfbd5af4b3dc60c09b/backend/src/common/db/ormconfig.ts#L10), like this:
    
-         ```
           host: localhost 
           port: 6543
-          ```
+
+> This only as a temporary solution, and remember change back to `process.env` like in original when build docker image, else later `docker-compose up`, cant connect to postgres
 
 ## Some Explaination for the Backend 
 
