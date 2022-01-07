@@ -16,7 +16,6 @@ export class OrderProductRepositoryImplement implements OrderProductRepository {
   async create(data: OrderProduct): Promise<OrderProductsEntity> {
     const orderProductEntity = this.modelToEntity(data);
     return await getRepository(OrderProductsEntity).save(orderProductEntity);
-    //await getManager().save(orderProductEntity);
   }
 
   private modelToEntity(model: OrderProduct): OrderProductsEntity {

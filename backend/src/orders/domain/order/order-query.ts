@@ -18,7 +18,13 @@ export class Order {
 }
 
 export interface OrderQuery {
+  /**
+   * @description: find order by id
+   */
   findById: (orderId: string) => Promise<Order>;
 
+  /**
+   * @description find Order using PaymentIntentId from Stripe
+   */
   findOrderByPaymentIntentId: (paymentIntentId: string) => Promise<Order>;
 }

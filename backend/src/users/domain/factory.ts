@@ -13,7 +13,7 @@ export class UserFactory {
   ) {}
 
   /**
-   *
+   * @description Create user domain object
    * @param id
    * @param username
    * @returns User aggreateRoot
@@ -25,7 +25,7 @@ export class UserFactory {
   }
 
   /**
-   *
+   * @description Restructure Properties into a User Domain object
    * @param UserProperties
    * @returns User aggreateRoot
    */

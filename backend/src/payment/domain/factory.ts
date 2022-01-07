@@ -8,6 +8,11 @@ export class PaymentFactory {
     @Inject(EventPublisher) private readonly eventPublisher: EventPublisher,
   ) {}
 
+  /**
+   * @description Create an Payment domain object using orderId
+   * @param orderId
+   * @returns Payment domain object
+   */
   create(orderId: string): Payment {
     return this.eventPublisher.mergeObjectContext(
       new PaymentImplement({

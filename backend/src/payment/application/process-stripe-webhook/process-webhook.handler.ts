@@ -28,12 +28,14 @@ export class ProcessWebhookCommandHandler
   );
 
   async execute(command: ProcessWebhookCommand): Promise<any> {
+    // construct the data from Stripe request
     const event = this.stripe.webhooks.constructEvent(
       command.payload,
       command.signature,
       this.configService.get('STRIPE_WEBHOOK_SECRET'),
     );
 
+    // get the order with the given paymentIntentId
     const paymentIntent: any = event.data.object;
     const order = await this.orderQuery.findOrderByPaymentIntentId(
       paymentIntent.id,
@@ -41,8 +43,11 @@ export class ProcessWebhookCommandHandler
 
     if (!order) return;
 
+    // create a payment domain object
     const payment = this.paymentFactory.create(order.id);
 
+    // then trigger event defined in Payment domain object
+    // it will trigger event to be received by PaymentEventHandler in Order module
     switch (event.type) {
       case 'payment_intent.succeeded':
         payment.succeed();

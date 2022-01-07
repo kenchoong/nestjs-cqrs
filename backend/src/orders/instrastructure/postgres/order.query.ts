@@ -1,14 +1,11 @@
 import { Injectable } from '@nestjs/common';
-import {
-  Order,
-  OrderProducts,
-  OrderQuery,
-} from 'src/orders/domain/order/order-query';
-import { User } from 'src/users/domain/query';
+import { Order, OrderQuery } from 'src/orders/domain/order/order-query';
 import { getRepository } from 'typeorm';
-import { OrderProductsEntity } from './order-product.entity';
 import { OrderEntity } from './order.entity';
 
+/**
+ * @description implementation of OrderQuery interface, get data from DB
+ */
 @Injectable()
 export class OrderQueryImplement implements OrderQuery {
   async findById(orderId: string): Promise<undefined | Order> {
@@ -37,19 +34,5 @@ export class OrderQueryImplement implements OrderQuery {
     return entity
       ? { ...entity, createdAt: entity.createdAt, updatedAt: entity.updatedAt }
       : undefined;
-  }
-
-  private convertOrderProductsFromEntity(
-    entities: OrderProductsEntity[],
-  ): OrderProducts {
-    return entities.map((entity) => ({
-      ...entity,
-      createdAt: entity.createdAt,
-      updatedAt: entity.updatedAt,
-    }));
-  }
-
-  private convertUserFromEntity(entity?: User): User | undefined {
-    return entity ? { ...entity, createdAt: entity.createdAt } : undefined;
   }
 }

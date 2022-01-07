@@ -10,6 +10,14 @@ export class OrderFactory {
     @Inject(EventPublisher) private readonly eventPublisher: EventPublisher,
   ) {}
 
+  /**
+   * @description OrderFactory generate Order using necessary details
+   * @param id
+   * @param grandTotal
+   * @param orderProduct
+   * @param user
+   * @returns Order domain
+   */
   create(
     id: string,
     grandTotal: number,

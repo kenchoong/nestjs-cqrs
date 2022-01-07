@@ -2,8 +2,8 @@
 
 This repo is to demonstrate the usage and implementation of following
 
-- Nestjs
-- Nextjs CQRS
+- Nestjs CQRS
+- Nextjs 
 - Postgres
 - TypeORM
 - Stripe
@@ -51,7 +51,7 @@ Setup Stripe for our app
 
    For info: read [here](https://stripe.com/docs/webhooks)
 
-6. Login in to Stripe and copy the test secret key in Stripe Dashboard
+6. Login in to Stripe and copy the test secret key in Stripe Dashboard, paste it [here](https://github.com/kenchoong/nestjs-cqrs/blob/a869b4ad071e8003773e69b78e52938a1271ec1e/backend/.env#L11)
 
    ```
    End up ur /backend/.env will look like this
@@ -67,7 +67,7 @@ Setup Stripe for our app
    
    ![stripe outcome](https://raw.githubusercontent.com/kenchoong/nestjs-cqrs/develop/backend/a12.png)
 
-7. Paste Stripe Publishable key to `frontend/.env` file, to look like this
+7. Paste Stripe Publishable key to `frontend/.env` file [here](https://github.com/kenchoong/nestjs-cqrs/blob/a869b4ad071e8003773e69b78e52938a1271ec1e/frontend/.env#L3), to look like this
 
    ```
    NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY="PASTE_YOUR_KEY_HERE"
@@ -108,7 +108,7 @@ Setup Stripe for our app
 
 ## Database Migration and ERD diagram
 
-Database look like this:
+Database look like this, just to meet the requirements:
 
 ![erd](./backend/erd.png)
 
@@ -126,11 +126,19 @@ The migration script already setup in `package.json`, so u can run this:
    // migration file will be in /backend/src/common/db/migrations
    ```
 
-> Note: if in localhost, generate migration having the connect database problem, first, need to start the postgres server, if still exist, hardcode the database details in `backend/src/common/db/ormconfig.ts` file.
+> Note: if in localhost, generate migration having the connect database problem, 
+
+   -  first, need to start the postgres server, if it still exist,
+   -  hardcode the host and port in [this file](https://github.com/kenchoong/nestjs-cqrs/blob/b51d59a6d6bd7e0f4427a3cfbd5af4b3dc60c09b/backend/src/common/db/ormconfig.ts#L10), like this:
+   
+          host: localhost 
+          port: 6543
+
+> This only as a temporary solution, and remember change back to `process.env` like in original when build docker image, else later `docker-compose up`, cant connect to postgres
 
 ## Some Explaination for the Backend 
 
-Using Domain Domain Design to structure the backend, I try to explain this in Layman Terms below
+Using Domain Domain Design to structure the backend, I will explain this in Layman Terms below
 
 The app will consists of 5 Layers
 
@@ -144,7 +152,7 @@ The app will consists of 5 Layers
 
    - what properties(data) `a user` will have,
    - validation of the each properties value when insert to db, what a `user` can do will include `AggreateRoot`, `Factory`, `ValueObject` in this layer.
-   - will defined in `repo` or `query` interface, to expose the interface to infrastructure and application layer to access the properties of AggreateRoot
+   - will defined interface in `repo.ts` or `query.ts` file , to expose the interface for infrastructure and application layer to access the properties of AggreateRoot
 
 3. Application Layer
 
@@ -152,7 +160,7 @@ The app will consists of 5 Layers
 
 4. Instracture Layer
 
-   The underlying infrastructure needed to support module, like Database, Cache will separate into each individual folder. Right now is just Postgres.
+   The underlying infrastructure needed to support module, like Database, Cache, Messaging, another DB, all this will separate into each individual folder. Right now is just Postgres.
 
 5. Interface layer
 
@@ -168,7 +176,7 @@ The app will consists of 5 Layers
     ```
  6. Event layer (only when needed)
 
-      Example, received event from Stripe, then need to update the `orderStatus` in `order` module. To separate this, we use event. Payment module trigger an event, Order module receive it, will update the db. 
+      Example, received event from Stripe in `Payment module`, then need to update the `orderStatus` in `order` module. To separate this, we use event. Payment module trigger an event, Order module receive it, will update the db. 
 
       You can see the flow start from [here](https://github.com/kenchoong/nestjs-cqrs/blob/9337341d8fa65aab6306d41fad3b04050fef1733/backend/src/payment/application/process-stripe-webhook/process-webhook.handler.ts#L48)
 
@@ -193,6 +201,11 @@ Let the image build, this will take estimate 500 seconds to initialize `backend`
    connect to server using value of `hostname = POSTGRES_HOSTNAME` ,`port = 5432`
    `POSTGRES_USER` and `POSTGRES_PASSWORD` as well
 
-# Summary
+## Good reads
+
+- [The Onion Architecture](https://jeffreypalermo.com/2008/07/the-onion-architecture-part-1/)
+- [The Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html)
+
+## Summary
 
 In this project, mainly to showcase the Domain Driven Design for the backend. If problem, open the issue. Cant make a `1 command setup` because need to build Stripe credential inside the docker.

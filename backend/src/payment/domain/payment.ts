@@ -1,15 +1,28 @@
 import { AggregateRoot } from '@nestjs/cqrs';
 import { PaymentEvent } from 'src/orders/event/payment-event/payment-event';
-import { PaymentEventHandler } from 'src/orders/event/payment-event/payment-event.handler';
 
 export type PaymentProperties = Required<{
   orderId: string;
 }>;
 
 export interface Payment {
+  /**
+   * @description Return all properties of a Payment
+   */
   properties: () => PaymentProperties;
+  /**
+   * @description Trigger order success event
+   */
   succeed: () => void;
+
+  /**
+   * @description Trigger order failed event
+   */
   failed: () => void;
+
+  /**
+   * @description Commit of the AggreateRoot of Nestjs
+   */
   commit: () => void;
 }
 
