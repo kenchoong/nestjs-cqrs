@@ -12,6 +12,12 @@ This repo is to demonstrate the usage and implementation of following
 
 ## Setup
 
+First clone this repo: 
+
+   ```
+   $ git clone https://github.com/kenchoong/nestjs-cqrs.git
+   ```
+
 Setup Stripe for our app
 
 1. Download Stripe CLI [here](https://github.com/stripe/stripe-cli/releases/tag/v1.7.9)
