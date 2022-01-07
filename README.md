@@ -137,7 +137,7 @@ The migration script already setup in `package.json`, so u can run this:
 
 ## Some Explaination for the Backend 
 
-Using Domain Domain Design to structure the backend, I will explain this in Layman Terms below
+Using Domain Driven Design to structure the backend, I will explain this in Layman Terms below
 
 The app will consists of 5 Layers
 
