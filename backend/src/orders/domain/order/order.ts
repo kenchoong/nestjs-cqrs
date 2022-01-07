@@ -23,6 +23,9 @@ export type OrderProperties = OrderEssentialProperties &
   Required<OptionalProperties>;
 
 export interface Order {
+  /**
+   * @description return all properties of an Order
+   */
   properties: () => OrderProperties;
 }
 

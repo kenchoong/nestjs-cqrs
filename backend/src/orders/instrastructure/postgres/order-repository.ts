@@ -3,6 +3,9 @@ import { OrderRepository } from 'src/orders/domain/order/order-repository';
 import { getRepository } from 'typeorm';
 import { OrderEntity } from './order.entity';
 
+/**
+ * @description Implementation of OrderRepository interface, here go in to db
+ */
 export class OrderRepoImplement implements OrderRepository {
   async newOrderId(): Promise<string> {
     const emptyOrderProduct = new OrderEntity();
