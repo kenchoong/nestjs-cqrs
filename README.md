@@ -152,7 +152,7 @@ The app will consists of 5 Layers
 
 4. Instracture Layer
 
-   The underlying infrastructure needed to support module, like Database, Cache will separate into each individual folder. Right now is just Postgres.
+   The underlying infrastructure needed to support module, like Database, Cache, Messaging, another DB, all this will separate into each individual folder. Right now is just Postgres.
 
 5. Interface layer
 
