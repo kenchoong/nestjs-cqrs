@@ -21,7 +21,6 @@ const CheckoutPage: React.FC<checkoutProps> = ({}) => {
 
       getOrderById(orderId.toString())
         .then((res) => {
-          console.log(res.data);
           setOrder(res.data);
         })
         .catch((err) => console.log(err));

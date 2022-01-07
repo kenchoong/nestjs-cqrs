@@ -11,7 +11,6 @@ RUN yarn build
 
 FROM node:lts as runner
 WORKDIR /lavax
-ENV NODE_ENV developement
 # If you are using a custom next.config.js file, uncomment this line.
 # COPY --from=builder /lavax/next.config.js ./
 COPY --from=builder /lavax/public ./public

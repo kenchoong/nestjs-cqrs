@@ -1,43 +1,14 @@
-version: "3"
+version: '3'
 
 services:
-  frontend:
-    build: ./frontend
-    image: lavax-frontend
-    restart: always
-    env_file:
-      - ./frontend/.env
-    ports:
-      - "3000:3000"
-    depends_on:
-      - backend
-    networks:
-      - backend-network
-
-  backend:
-    build: ./backend
-    image: lavax-backend
-    restart: always
-    hostname: nestjs
-    ports:
-      - "3002:3002"
-    env_file:
-      - ./backend/.env
-    networks:
-      - backend-network
-    links:
-      - postgres_db
-    depends_on:
-      - postgres_db
-
-  postgres_db:
+  postgres_db_dev:
     image: postgres:13
     env_file:
-      - ./backend/.env
-    container_name: postgres_container
+      - .env
+    container_name: postgres_container1
     hostname: ${POSTGRES_HOSTNAME}
     ports:
-      - "5432:5432"
+      - '6543:5432'
     environment:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
@@ -48,14 +19,15 @@ services:
       - postgres-data:/var/lib/postgresql/data
     restart: unless-stopped
 
-  pgadmin:
+  pgadmin_dev:
     image: dpage/pgadmin4
+    container_name: pgadmin_dev
     depends_on:
-      - postgres_db
+      - postgres_db_dev
     env_file:
-      - ./backend/.env
+      - .env
     ports:
-      - "5555:80"
+      - '5556:80'
     networks:
       - backend-network
     environment:

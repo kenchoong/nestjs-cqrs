@@ -59,8 +59,6 @@ export function useLocalStorageState(defaultValue: {}, key: string) {
 export default function useAuthFunction() {
   const [user, setUser] = useLocalStorageState({}, "lavaUserId");
 
-  console.log(user);
-
   return {
     user,
     setUser,

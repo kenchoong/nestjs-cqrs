@@ -4,12 +4,11 @@ import { ProductEntity } from '../../product/infrastructure/postgres/entities/pr
 import { OrderProductsEntity } from '../../orders/instrastructure/postgres/order-product.entity';
 import { OrderEntity } from '../../orders/instrastructure/postgres/order.entity';
 
-console.log(process.env.PORTGRES_HOSTNAME);
 export const config: TypeOrmModuleOptions = {
   name: 'default',
   type: 'postgres',
-  host: process.env.PORTGRES_HOSTNAME || 'localhost',
-  port: Number(process.env.PORT) || 6543,
+  host: process.env.POSTGRES_HOSTNAME || 'localhost',
+  port: Number(process.env.POSTGRES_PORT) || 6543,
   username: process.env.POSTGRES_USER || 'postgres',
   password: process.env.POSTGRES_PASSWORD || 'postgres',
   database: process.env.POSTGRES_DB || 'lavax_db',

@@ -1,10 +1,11 @@
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { QueryBus, CommandBus } from '@nestjs/cqrs';
-import { ApiNotFoundResponse, ApiResponse } from '@nestjs/swagger';
+import { ApiNotFoundResponse, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { CreateOrderCommand } from '../application/create-order/create-order.command';
 import { GetOrderByIdQuery } from '../application/get-order-by-id/get-order-by-id.query';
 import { CreateOrderDto } from './dto/request/create-order.dto';
 
+@ApiTags('Orders')
 @Controller('orders')
 export class OrdersController {
   constructor(

@@ -4,12 +4,9 @@ import {
   Controller,
   Post,
   Headers,
-  Get,
-  Param,
-  Query,
 } from '@nestjs/common';
 import { QueryBus, CommandBus } from '@nestjs/cqrs';
-import { ApiNotFoundResponse, ApiProperty, ApiResponse } from '@nestjs/swagger';
+import { ApiNotFoundResponse, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { CreatePaymentIntentCommand } from '../application/create-payment-intent/create-payment-intent.command';
 import { CreateSessionCommand } from '../application/create-session/create-session.command';
 import { ProcessWebhookCommand } from '../application/process-stripe-webhook/process-webhook.command';
@@ -17,6 +14,7 @@ import { CreateSessionDTO } from './dto/request/create-session.dto';
 import { CreatePaymentIntentResponseDto } from './dto/response/create-payment-intent-response.dto';
 import { CreateSessionResponseDto } from './dto/response/create-session-response.dto';
 
+@ApiTags('Payment')
 @Controller('payment')
 export class PaymentController {
   constructor(

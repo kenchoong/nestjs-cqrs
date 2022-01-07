@@ -9,16 +9,13 @@ import { Elements } from "@stripe/react-stripe-js";
 import CheckoutForm from "./CheckoutForm";
 import { getPaymentIntentClientSecret } from "../../services/orderDataSource";
 import { Text } from "@chakra-ui/react";
+import getEnvVars from "../../environment";
 
 // Make sure to call loadStripe outside of a component’s render to avoid
 // recreating the Stripe object on every render.
 // This is your test publishable API key.
 
 //"pk_test_51K0LJtE9eGZJE2Eo0Wl0tVoe3mcps5ehD92su9vHPR73OwCDydYCZLSZYC4bYDBa6sXBVKqy4XkOv5f0lFtLjWUG00zD53htHV"
-const stripePromise = loadStripe(
-  //process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!
-  "pk_test_51K0LJtE9eGZJE2Eo0Wl0tVoe3mcps5ehD92su9vHPR73OwCDydYCZLSZYC4bYDBa6sXBVKqy4XkOv5f0lFtLjWUG00zD53htHV"
-);
 
 export interface PaymentComponentInterface {
   orderId: string;
@@ -30,8 +27,13 @@ export default function StripePaymentComponent({
   const [clientSecret, setClientSecret] = useState("");
   const [err, setErr] = useState<string | null>(null);
 
+  const stripePromise = loadStripe(
+    getEnvVars().NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
+  );
+
   useEffect(() => {
     // Create PaymentIntent as soon as the page loads
+
     getPaymentIntentClientSecret(orderId)
       .then((res) => {
         if (res.status === 201) {
