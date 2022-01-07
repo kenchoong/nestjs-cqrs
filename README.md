@@ -131,11 +131,11 @@ The app will consists of 5 Layers
 
 4. Instracture Layer
 
-The underlying infrastructure needed to support module, like Database, Cache will separate into each individual folder. Right now is just Postgres.
+   The underlying infrastructure needed to support module, like Database, Cache will separate into each individual folder. Right now is just Postgres.
 
 5. Interface layer
 
-A surface to let real API user to hit on. Controller and Data Transfer Object for request and response.Basically the data flow like this, below.
+   A surface to let real API user to hit on. Controller and Data Transfer Object for request and response.Basically the data flow like this, below.
 
     ```
     // --> Data in:
@@ -156,16 +156,16 @@ Let the image build, this will take 500 seconds to initialize `backend`, `fronte
 
 1. See the outcome
 
-[localhost:3000](http://localhost:3000/) Nextjs app
+   [localhost:3000](http://localhost:3000/) Nextjs app
 
-[localhost:3002/api](http://localhost:3000/api) Swagger Documentation
+   [localhost:3002/api](http://localhost:3000/api) Swagger Documentation
 
-[localhost:5555](http://localhost:5555) pgadmin
+   [localhost:5555](http://localhost:5555) pgadmin
 
 - login using `POSTGRES_USER` and `POSTGRES_PASSWORD` defined in `/backend/.env`
 
-connect to server using value of `hostname = POSTGRES_HOSTNAME` ,`port = 5432`
-`POSTGRES_USER` and `POSTGRES_PASSWORD` as well
+   connect to server using value of `hostname = POSTGRES_HOSTNAME` ,`port = 5432`
+   `POSTGRES_USER` and `POSTGRES_PASSWORD` as well
 
 # Summary
 
