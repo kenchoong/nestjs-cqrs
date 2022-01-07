@@ -127,7 +127,7 @@ The app will consists of 5 Layers
 
 3. Application Layer
 
-   Use case. Mostly mean how you want to do with the data, for example `create-user`, `get-product-by-id`, each use-case will in separate folder, inside it will contain Command,Query and the handler class
+   Use case. Mostly mean how you want to do with the data, for example `create-user`, `get-product-by-id`, each use-case will in separate folder. Right now is CQRS pattern, so inside it will contain Command, Query, Handler class. 
 
 4. Instracture Layer
 
