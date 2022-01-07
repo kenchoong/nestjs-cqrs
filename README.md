@@ -176,7 +176,7 @@ The app will consists of 5 Layers
     ```
  6. Event layer (only when needed)
 
-      Example, received event from Stripe, then need to update the `orderStatus` in `order` module. To separate this, we use event. Payment module trigger an event, Order module receive it, will update the db. 
+      Example, received event from Stripe in `Payment module`, then need to update the `orderStatus` in `order` module. To separate this, we use event. Payment module trigger an event, Order module receive it, will update the db. 
 
       You can see the flow start from [here](https://github.com/kenchoong/nestjs-cqrs/blob/9337341d8fa65aab6306d41fad3b04050fef1733/backend/src/payment/application/process-stripe-webhook/process-webhook.handler.ts#L48)
 
