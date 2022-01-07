@@ -51,7 +51,7 @@ Setup Stripe for our app
 
    For info: read [here](https://stripe.com/docs/webhooks)
 
-6. Login in to Stripe and copy the test secret key in Stripe Dashboard
+6. Login in to Stripe and copy the test secret key in Stripe Dashboard, paste it [here](https://github.com/kenchoong/nestjs-cqrs/blob/a869b4ad071e8003773e69b78e52938a1271ec1e/backend/.env#L11)
 
    ```
    End up ur /backend/.env will look like this
@@ -67,7 +67,7 @@ Setup Stripe for our app
    
    ![stripe outcome](https://raw.githubusercontent.com/kenchoong/nestjs-cqrs/develop/backend/a12.png)
 
-7. Paste Stripe Publishable key to `frontend/.env` file, to look like this
+7. Paste Stripe Publishable key to `frontend/.env` file [here](https://github.com/kenchoong/nestjs-cqrs/blob/a869b4ad071e8003773e69b78e52938a1271ec1e/frontend/.env#L3), to look like this
 
    ```
    NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY="PASTE_YOUR_KEY_HERE"
