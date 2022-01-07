@@ -60,7 +60,7 @@ Setup Stripe for our app
    NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY="PASTE_YOUR_KEY_HERE"
    ```
 
-# Test in localhost
+## Test in localhost
 
 1. Pull Postgres and PgAdmin
 
