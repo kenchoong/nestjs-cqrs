@@ -107,7 +107,7 @@ Setup Stripe for our app
 
 > Note: if in localhost, generate migration having the connect database problem, first, need to start the postgres server, if still exist, hardcode the database details in `backend/src/common/db/ormconfig.ts` file.
 
-## Some Explaination Backend
+## Some Explaination for the Backend 
 
 Using Domain Domain Design to structure the backend, I try to explain this in Layman Terms below
 
