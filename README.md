@@ -150,7 +150,7 @@ A surface to let real API user to hit on. Controller and Data Transfer Object fo
 
     In root folder
 
-    $ docker-compose up --build
+    $  docker-compose -f docker-compose.yml up --build
 
 Let the image build, this will take 500 seconds to initialize `backend`, `frontend`, `postgres`, and `pgadmin`
 
