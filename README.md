@@ -91,7 +91,7 @@ Setup Stripe for our app
 
 ## Database Migration and ERD diagram
 
-![erd]('./backend/erd.png')
+![erd](./backend/erd.png)
 
    ```
    $ cd backend
