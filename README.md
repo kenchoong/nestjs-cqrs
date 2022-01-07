@@ -72,6 +72,8 @@ Setup Stripe for our app
 
    ```
    $ cd backend
+   
+   $ yarn
 
    $ yarn start:dev
 
@@ -84,6 +86,8 @@ Setup Stripe for our app
    ```
    $ cd frontend
 
+   $ yarn
+   
    $ yarn dev
    ```
 
@@ -94,6 +98,8 @@ Setup Stripe for our app
 Database look like this, simple one:
 
 ![erd](./backend/erd.png)
+
+The migration script already setup in `package.json`, so u can run this:
 
    ```
    $ cd backend
@@ -154,7 +160,7 @@ The app will consists of 5 Layers
 
     $ docker-compose up --build
 
-Let the image build, this will take 500 seconds to initialize `backend`, `frontend`, `postgres`, and `pgadmin`
+Let the image build, this will take estimate 500 seconds to initialize `backend`, `frontend`, `postgres`, and `pgadmin`
 
 1. See the outcome
 
