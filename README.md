@@ -126,7 +126,15 @@ The migration script already setup in `package.json`, so u can run this:
    // migration file will be in /backend/src/common/db/migrations
    ```
 
-> Note: if in localhost, generate migration having the connect database problem, first, need to start the postgres server, if still exist, hardcode the database details in `backend/src/common/db/ormconfig.ts` file.
+> Note: if in localhost, generate migration having the connect database problem, 
+
+   -  first, need to start the postgres server, if it still exist,
+   -  hardcode the host and port in `backend/src/common/db/ormconfig.ts` file, like this:
+   
+         ```
+          host: localhost 
+          port: 6543
+          ```
 
 ## Some Explaination for the Backend 
 
