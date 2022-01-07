@@ -152,7 +152,7 @@ The app will consists of 5 Layers
 
    - what properties(data) `a user` will have,
    - validation of the each properties value when insert to db, what a `user` can do will include `AggreateRoot`, `Factory`, `ValueObject` in this layer.
-   - will defined in `repo` or `query` interface, to expose the interface for infrastructure and application layer to access the properties of AggreateRoot
+   - will defined interface in `repo.ts` or `query.ts` file , to expose the interface for infrastructure and application layer to access the properties of AggreateRoot
 
 3. Application Layer
 
