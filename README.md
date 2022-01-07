@@ -62,6 +62,11 @@ Setup Stripe for our app
    
    > Note: This need to setup the credential probably, if not you will facing this [issue](https://github.com/kenchoong/nestjs-cqrs/issues/6)
 
+
+   If everything setup probably, you will get the outcome like this in Stripe CLI 
+   
+   ![stripe outcome](https://raw.githubusercontent.com/kenchoong/nestjs-cqrs/develop/backend/a12.png)
+
 7. Paste Stripe Publishable key to `frontend/.env` file, to look like this
 
    ```
