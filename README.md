@@ -2,8 +2,8 @@
 
 This repo is to demonstrate the usage and implementation of following
 
-- Nestjs
-- Nextjs CQRS
+- Nestjs CQRS
+- Nextjs 
 - Postgres
 - TypeORM
 - Stripe
