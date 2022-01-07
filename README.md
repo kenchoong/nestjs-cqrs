@@ -158,7 +158,7 @@ The app will consists of 5 Layers
 
    Use case. Mostly mean how you want to do with the data, for example `create-user`, `get-product-by-id`, each use-case will in separate folder. Right now is CQRS pattern, so inside it will contain Command, Query, Handler class. Over here is only contain `business logic` aka organize the data using the `domain` before go in infrastructure layer. 
 
-4. Instracture Layer
+4. Infrastruture Layer
 
    The underlying infrastructure needed to support module, like Database, Cache, Messaging, another DB, all this will separate into each individual folder. Right now is just Postgres.
 
