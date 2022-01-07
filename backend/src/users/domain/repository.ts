@@ -1,6 +1,9 @@
 import { UserEntity } from '../infrastructure/postgres/user.entity';
 import { User } from './user';
 
+/**
+ * @description implements by user-entity in infrasturcture layer
+ */
 export class UserRepository {
   /**
    * @description insert a empty user to db, and return an UserId

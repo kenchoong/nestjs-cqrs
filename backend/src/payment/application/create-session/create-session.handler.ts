@@ -27,12 +27,14 @@ export class CreateSessionCommandHandler
   );
 
   async execute(command: CreateSessionCommand): Promise<any> {
+    // find the order
     const order = await this.orderRepo.findById(command.orderId);
 
     if (!order) throw new NotFoundException('Order with given id not found');
 
     console.log(order.orderProduct);
 
+    // each item in Order, pass it to Stripe, then push it into an array
     const line_items = [];
     order.orderProduct.map((itemInProduct) => {
       console.log(itemInProduct);
@@ -50,8 +52,7 @@ export class CreateSessionCommandHandler
       });
     });
 
-    console.log(line_items);
-
+    // Create the session using Stripe
     const session = await this.stripe.checkout.sessions.create({
       payment_method_types: ['card'],
       line_items,

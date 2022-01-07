@@ -30,8 +30,10 @@ export class CreatePaymentIntentCommandHandler
   );
 
   async execute(command: CreatePaymentIntentCommand): Promise<any> {
+    // get the order by orderId
     const order = await this.orderQuery.findById(command.orderId);
 
+    // create the paymentIntent in stripe
     const paymentIntent = await this.stripe.paymentIntents.create({
       amount: order.grandTotal * 100,
       currency: 'myr',
@@ -40,6 +42,8 @@ export class CreatePaymentIntentCommandHandler
       },
     });
 
+    // update the paymentIntent id in orderRepo
+    // Here need to make sure the id is updated to Order db
     await this.orderRepo.updatePaymentIntentId(order.id, paymentIntent.id);
 
     return {

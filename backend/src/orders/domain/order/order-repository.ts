@@ -1,6 +1,9 @@
 import { OrderEntity } from 'src/orders/instrastructure/postgres/order.entity';
 import { Order } from './order';
 
+/**
+ * @description will implement in order-entity in infrastructure layer
+ */
 export interface OrderRepository {
   newOrderId(): Promise<string>;
 

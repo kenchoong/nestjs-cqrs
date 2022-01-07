@@ -19,7 +19,13 @@ export interface ProductRepository {
    */
   create: (data: Product) => Promise<void>;
 
+  /**
+   * @description Find product by id
+   */
   findById: (id: string) => Promise<ProductEntity | null>;
 
+  /**
+   * @description find a lot of product with array of IDs
+   */
   findEntityByIds: (ids: string[]) => Promise<ProductEntity[] | null>;
 }
