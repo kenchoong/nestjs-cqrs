@@ -37,8 +37,10 @@ const SuccessCheckoutPage: React.FC<successProps> = ({}) => {
 
           <Text mt={4}>
             Note: This is fetch from server, just to show u the payment status
-            of an order already update
+            of an order already update.
           </Text>
+          
+          <Text mt={4}> If you didnt see it update to PAYMENT_SUCCEED, mostly likely is you didnt start Stripe CLI, or didnt set up the env variable correctly </Text>
         </Flex>
       )}
 

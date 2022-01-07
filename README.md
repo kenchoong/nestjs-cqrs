@@ -148,7 +148,7 @@ The app will consists of 5 Layers
 
 3. Application Layer
 
-   Use case. Mostly mean how you want to do with the data, for example `create-user`, `get-product-by-id`, each use-case will in separate folder. Right now is CQRS pattern, so inside it will contain Command, Query, Handler class. 
+   Use case. Mostly mean how you want to do with the data, for example `create-user`, `get-product-by-id`, each use-case will in separate folder. Right now is CQRS pattern, so inside it will contain Command, Query, Handler class. Over here is only contain `business logic` aka organize the data using the `domain` before go in infrastructure layer. 
 
 4. Instracture Layer
 
@@ -166,6 +166,11 @@ The app will consists of 5 Layers
     interface <- application <- domain <- infrastructure(Entity)
 
     ```
+ 6. Event layer (only when needed)
+
+      Example, received event from Stripe, then need to update the `orderStatus` in `order` module. To separate this, we use event. Payment module trigger an event, Order module receive it, will update the db. 
+
+      You can see the flow start from [here](https://github.com/kenchoong/nestjs-cqrs/blob/9337341d8fa65aab6306d41fad3b04050fef1733/backend/src/payment/application/process-stripe-webhook/process-webhook.handler.ts#L48)
 
 ## Deployment
 
