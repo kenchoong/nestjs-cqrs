@@ -59,6 +59,8 @@ Setup Stripe for our app
    STRIPE_SK_TEST="THE_KEY_FROM_STRIPE_DASHBOARD" <- Get from Stripe Dashboard
    STRIPE_WEBHOOK_SECRET="SECRET_FROM_STRIPE_CLI" <-- get from STRIPE CLI
    ```
+   
+   > Note: This need to setup the credential probably, if not you will facing this [issue](https://github.com/kenchoong/nestjs-cqrs/issues/6)
 
 7. Paste Stripe Publishable key to `frontend/.env` file, to look like this
 
