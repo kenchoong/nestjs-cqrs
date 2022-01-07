@@ -204,6 +204,7 @@ Let the image build, this will take estimate 500 seconds to initialize `backend`
 
 - [The Onion Architecture](https://jeffreypalermo.com/2008/07/the-onion-architecture-part-1/)
 - [The Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html)
+- [What is Domain Driven Design](https://www.boldare.com/blog/what-is-domain-driven-design/)
 
 ## Summary
 
