@@ -95,7 +95,7 @@ Setup Stripe for our app
 
 ## Database Migration and ERD diagram
 
-Database look like this, simple one:
+Database look like this:
 
 ![erd](./backend/erd.png)
 
