@@ -201,6 +201,11 @@ Let the image build, this will take estimate 500 seconds to initialize `backend`
    connect to server using value of `hostname = POSTGRES_HOSTNAME` ,`port = 5432`
    `POSTGRES_USER` and `POSTGRES_PASSWORD` as well
 
-# Summary
+## Good reads
+
+- [The Onion Architecture](https://jeffreypalermo.com/2008/07/the-onion-architecture-part-1/)
+- [The Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html)
+
+## Summary
 
 In this project, mainly to showcase the Domain Driven Design for the backend. If problem, open the issue. Cant make a `1 command setup` because need to build Stripe credential inside the docker.
