@@ -12,6 +12,12 @@ This repo is to demonstrate the usage and implementation of following
 
 ## Setup
 
+First clone this repo: 
+
+   ```
+   $ git clone https://github.com/kenchoong/nestjs-cqrs.git
+   ```
+
 Setup Stripe for our app
 
 1. Download Stripe CLI [here](https://github.com/stripe/stripe-cli/releases/tag/v1.7.9)
@@ -53,6 +59,8 @@ Setup Stripe for our app
    STRIPE_SK_TEST="THE_KEY_FROM_STRIPE_DASHBOARD" <- Get from Stripe Dashboard
    STRIPE_WEBHOOK_SECRET="SECRET_FROM_STRIPE_CLI" <-- get from STRIPE CLI
    ```
+   
+   > Note: This need to setup the credential probably, if not you will facing this [issue](https://github.com/kenchoong/nestjs-cqrs/issues/6)
 
 7. Paste Stripe Publishable key to `frontend/.env` file, to look like this
 
@@ -60,7 +68,7 @@ Setup Stripe for our app
    NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY="PASTE_YOUR_KEY_HERE"
    ```
 
-# Test in localhost
+## Test in localhost
 
 1. Pull Postgres and PgAdmin
 
@@ -72,6 +80,8 @@ Setup Stripe for our app
 
    ```
    $ cd backend
+   
+   $ yarn
 
    $ yarn start:dev
 
@@ -84,6 +94,8 @@ Setup Stripe for our app
    ```
    $ cd frontend
 
+   $ yarn
+   
    $ yarn dev
    ```
 
@@ -91,7 +103,11 @@ Setup Stripe for our app
 
 ## Database Migration and ERD diagram
 
+Database look like this:
+
 ![erd](./backend/erd.png)
+
+The migration script already setup in `package.json`, so u can run this:
 
    ```
    $ cd backend
@@ -127,15 +143,15 @@ The app will consists of 5 Layers
 
 3. Application Layer
 
-   Use case. Mostly mean how you want to do with the data, for example `create-user`, `get-product-by-id`, each use-case will in separate folder, inside it will contain Command,Query and the handler class
+   Use case. Mostly mean how you want to do with the data, for example `create-user`, `get-product-by-id`, each use-case will in separate folder. Right now is CQRS pattern, so inside it will contain Command, Query, Handler class. 
 
 4. Instracture Layer
 
-The underlying infrastructure needed to support module, like Database, Cache will separate into each individual folder. Right now is just Postgres.
+   The underlying infrastructure needed to support module, like Database, Cache will separate into each individual folder. Right now is just Postgres.
 
 5. Interface layer
 
-A surface to let real API user to hit on. Controller and Data Transfer Object for request and response.Basically the data flow like this, below.
+   A surface to let real API user to hit on. Controller and Data Transfer Object for request and response.Basically the data flow like this, below.
 
     ```
     // --> Data in:
@@ -152,20 +168,20 @@ A surface to let real API user to hit on. Controller and Data Transfer Object fo
 
     $  docker-compose -f docker-compose.yml up --build
 
-Let the image build, this will take 500 seconds to initialize `backend`, `frontend`, `postgres`, and `pgadmin`
+Let the image build, this will take estimate 500 seconds to initialize `backend`, `frontend`, `postgres`, and `pgadmin`
 
 1. See the outcome
 
-[localhost:3000](http://localhost:3000/) Nextjs app
+   [localhost:3000](http://localhost:3000/) Nextjs app
 
-[localhost:3002/api](http://localhost:3000/api) Swagger Documentation
+   [localhost:3002/api](http://localhost:3000/api) Swagger Documentation
 
-[localhost:5555](http://localhost:5555) pgadmin
+   [localhost:5555](http://localhost:5555) pgadmin
 
 - login using `POSTGRES_USER` and `POSTGRES_PASSWORD` defined in `/backend/.env`
 
-connect to server using value of `hostname = POSTGRES_HOSTNAME` ,`port = 5432`
-`POSTGRES_USER` and `POSTGRES_PASSWORD` as well
+   connect to server using value of `hostname = POSTGRES_HOSTNAME` ,`port = 5432`
+   `POSTGRES_USER` and `POSTGRES_PASSWORD` as well
 
 # Summary
 
