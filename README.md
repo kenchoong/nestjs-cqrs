@@ -43,15 +43,7 @@ Setup Stripe for our app
    STRIPE_WEBHOOK_SECRET="PASTE_SECRET_FROM_CLI"
    ```
 
-5. Test the CLI
-
-   ```
-   $ stripe trigger payment_intent.succeeded
-   ```
-
-   For info: read [here](https://stripe.com/docs/webhooks)
-
-6. Login in to Stripe and copy the test secret key in Stripe Dashboard, paste it [here](https://github.com/kenchoong/nestjs-cqrs/blob/a869b4ad071e8003773e69b78e52938a1271ec1e/backend/.env#L11)
+5. Login in to Stripe and copy the test secret key in Stripe Dashboard, paste it [here](https://github.com/kenchoong/nestjs-cqrs/blob/a869b4ad071e8003773e69b78e52938a1271ec1e/backend/.env#L11)
 
    ```
    End up ur /backend/.env will look like this
@@ -60,9 +52,16 @@ Setup Stripe for our app
    STRIPE_WEBHOOK_SECRET="SECRET_FROM_STRIPE_CLI" <-- get from STRIPE CLI
    ```
    
-   > Note: This need to setup the credential probably, if not you will facing this [issue](https://github.com/kenchoong/nestjs-cqrs/issues/6)
+   > Note: This need to setup the credential probably, if not you will facing this [issue](https://github.com/kenchoong/nestjs-cqrs/issues/6) when Stripe hit the webhook
 
+6. Test the CLI
 
+   ```
+   $ stripe trigger payment_intent.succeeded
+   ```
+
+   For info: read [here](https://stripe.com/docs/webhooks)
+   
    If everything setup probably, you will get the outcome like this in Stripe CLI 
    
    ![stripe outcome](https://raw.githubusercontent.com/kenchoong/nestjs-cqrs/develop/backend/a12.png)
