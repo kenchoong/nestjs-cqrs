@@ -18,18 +18,34 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json"
+    "test:e2e": "jest --config ./test/jest-e2e.json",
+    "typeorm:cli": " ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli -f ./src/common/db/ormconfig-migrations.ts",
+    "typeorm:transpile": "set NODE_ENV=migration && ts-node --transpile-only ./node_modules/typeorm/cli.js -f ./src/common/db/ormconfig-migrations.ts",
+    "migrate:generate": "yarn typeorm:cli migration:generate -n",
+    "migrate:create": "yarn typeorm:cli migration:create -n",
+    "migrate:run": "yarn typeorm:transpile migration:run",
+    "migrate:revert": "yarn typeorm:transpile migration:revert"
   },
   "dependencies": {
     "@nestjs/common": "^8.0.0",
+    "@nestjs/config": "^1.1.5",
     "@nestjs/core": "^8.0.0",
     "@nestjs/cqrs": "^8.0.1",
     "@nestjs/mapped-types": "*",
     "@nestjs/microservices": "^8.2.4",
     "@nestjs/platform-express": "^8.0.0",
+    "@nestjs/swagger": "^5.1.5",
+    "@nestjs/typeorm": "^8.0.2",
+    "body-parser": "^1.19.1",
+    "class-validator": "^0.13.2",
+    "nestjs-stripe": "^1.0.0",
+    "pg": "^8.7.1",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
-    "rxjs": "^7.2.0"
+    "rxjs": "^7.2.0",
+    "stripe": "^8.195.0",
+    "swagger-ui-express": "^4.3.0",
+    "typeorm": "^0.2.41"
   },
   "devDependencies": {
     "@nestjs/cli": "^8.0.0",
