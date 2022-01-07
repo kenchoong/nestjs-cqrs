@@ -34,6 +34,10 @@ export class AppService implements OnModuleInit, OnModuleDestroy {
       ...this.loadPostgresConfig(),
       type: 'postgres',
       entities,
+      migrations: ['migration/*.js'],
+      cli: {
+        migrationsDir: 'migration',
+      },
     }).catch((error: Error) => this.failToConnectDb(error));
   }
 
