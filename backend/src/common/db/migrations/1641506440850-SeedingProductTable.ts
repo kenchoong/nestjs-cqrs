@@ -10,12 +10,20 @@ export class SeedingProductTable1641506440850 implements MigrationInterface {
         description: 'Tak makan rugi o',
       }),
     );
-    
-     await queryRunner.manager.save(
+
+    await queryRunner.manager.save(
       queryRunner.manager.create<ProductEntity>(ProductEntity, {
         price: 201.8,
         name: 'Nasi Lemak 1.0',
         description: 'Mesti kena makan',
+      }),
+    );
+
+    await queryRunner.manager.save(
+      queryRunner.manager.create<ProductEntity>(ProductEntity, {
+        price: 201.8,
+        name: 'Mee Goreng',
+        description: 'Macam mana pun kena makan',
       }),
     );
   }
