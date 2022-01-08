@@ -137,7 +137,7 @@ The migration script already setup in `package.json`, so u can run this:
 
 ## Some Explaination for the Backend 
 
-Using Domain Domain Design to structure the backend, I will explain this in Layman Terms below
+Using Domain Driven Design to structure the backend, I will explain this in Layman Terms below
 
 The app will consists of 5 Layers
 
@@ -204,6 +204,7 @@ Let the image build, this will take estimate 500 seconds to initialize `backend`
 
 - [The Onion Architecture](https://jeffreypalermo.com/2008/07/the-onion-architecture-part-1/)
 - [The Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html)
+- [What is Domain Driven Design](https://www.boldare.com/blog/what-is-domain-driven-design/)
 
 ## Summary
 
